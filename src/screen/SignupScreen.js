@@ -1,23 +1,58 @@
-/**
- * Created by manzoor.hussain on 10/28/2020.
- */
-/**
- * Created by manzoor.hussain on 10/28/2020.
- */
-/**
- * Created by manzoor.hussain on 10/28/2020.
- */
-import React from 'react';
-import {View,StyleSheet,Text} from 'react-native';
+import React,{useState} from 'react';
+import {View,StyleSheet} from 'react-native';
+import {Text,Button,Input} from 'react-native-elements'
+import Spacer from '../components/Spacer';
+const SignupScreen=({navigation})=>{
 
+    const[email,setEmail]=useState('');
+    const[password,setPassword]=useState('');
 
-const SignupScreen=()=>{
     return(
-        <Text>SignupScreen</Text>
+        <View style={styles.container}>
+
+
+        <Text h3>Sign up for Tracker</Text>
+        <Spacer/>
+            
+        <Input  label="Email"
+                value={email}
+                onChangeText={newEmail=>setEmail(newEmail)}
+                autoCapitalize="none"
+                autoCorrect={false}
+                />
+        <Spacer/>
+
+
+        <Input label="Password"
+                secureTextEntry
+               value={password}
+               onChangeText={newPassword=>setPassword(newPassword)}
+               autoCapitalize="none"
+               autoCorrect={false}
+            />
+        <Spacer/>
+
+
+        <Button title="Sign up"/>
+        <Spacer/>
+
+
+        </View>
     );
 }
 
+SignupScreen.navigationOptions=()=>{
+    header:null
+
+
+};
 const styles = StyleSheet.create({
+
+    container:{
+        flex:1,
+        justifyContent:'center',
+        marginBottom:200
+    },
 
 });
 

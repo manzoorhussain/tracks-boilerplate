@@ -24,6 +24,6 @@ const styles = StyleSheet.create({
 
 });
 
-export default TrackCreateScreen;/**
+export default TrackDetailScreen;/**
  * Created by manzoor.hussain on 10/28/2020.
  */

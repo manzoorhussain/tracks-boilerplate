@@ -14,9 +14,9 @@ import React from 'react';
 import {View,StyleSheet,Text} from 'react-native';
 
 
-const TrackDetailScreen=()=>{
+const TrackCreateScreen=()=>{
     return(
-        <Text>TrackDetailScreen</Text>
+        <Text>TrackCreateScreen</Text>
     );
 }
 
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default TrackDetailScreen;
+export default TrackCreateScreen;

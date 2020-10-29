@@ -1,25 +1,13 @@
-/**
- * Created by manzoor.hussain on 10/28/2020.
- */
-/**
- * Created by manzoor.hussain on 10/28/2020.
- */
-/**
- * Created by manzoor.hussain on 10/28/2020.
- */
-/**
- * Created by manzoor.hussain on 10/28/2020.
- */
-/**
- * Created by manzoor.hussain on 10/28/2020.
- */
 import React from 'react';
-import {View,StyleSheet,Text} from 'react-native';
+import {View,StyleSheet,Text,Button} from 'react-native';
 
 
-const TrackListScreen=()=>{
+const TrackListScreen=({navigation})=>{
     return(
+        <>
         <Text>TrackListScreen</Text>
+        <Button title="Go to Track Detail" onPress={()=>navigation.navigate('TrackDetail')}/>
+        </>
     );
 }
 
