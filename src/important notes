@@ -1,0 +1,16 @@
+In the upcoming lecture, you will get a few yellow deprecation warnings when we add code to our SignupScreen's navigation options.
+
+If you are using expo v39+ you will need to do the following:
+
+SignupScreen.navigationOptions = () => {
+  return {
+    headerShown: false,
+  };
+};
+Older versions of Expo (such as v37) will need to write it this way:
+
+SignupScreen.navigationOptions = () => {
+  return {
+    header: () => false,
+  };
+};
