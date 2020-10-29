@@ -10,7 +10,8 @@ import SignupScreen from './src/screen/SignupScreen';
 import TrackCreateScreen from './src/screen/TrackCreateScreen';
 import TrackDetailScreen from './src/screen/TrackDetailScreen';
 import TrackListScreen from './src/screen/TrackListScreen';
-
+import {Provider as AuthProvider} from './src/context/AuthContext';
+import {setNavigator} from './src/navigationRef';
 
 const switchNavigator=createStackNavigator({
 
@@ -32,4 +33,17 @@ const switchNavigator=createStackNavigator({
 
 });
 
-export default createAppContainer(switchNavigator);
+const App= createAppContainer(switchNavigator);
+
+export default()=>{
+
+    return (
+        <AuthProvider>
+            <App 
+            ref={(navigator)=>{setNavigator(navigator)}}
+                
+            />
+        </AuthProvider>
+    );
+
+}
