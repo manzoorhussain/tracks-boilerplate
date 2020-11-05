@@ -8,13 +8,36 @@ const authReducer=(state,action)=>{
     switch (action.type){
          case 'add_error':
              return {...state,errorMessage:action.payload};
-          case 'signup':
-            return {errorMessage:'',token:action.payload};   
+        case 'signup':
+            return {errorMessage:'',token:action.payload}; 
+        case 'signin':
+                return {errorMessage:'',token:action.payload}; 
+        case 'clear_error_message':
+             return {...state,errorMessage:''};       
 
         default:
             return state;
     }
 };
+
+//const tryLocalSignin=dispatch=>()=>async=>{
+const tryLocalSignin=dispatch=>async()=>{
+    
+    const token=await AsyncStorage.getItem('token');
+    
+    if(token){
+        dispatch({type:'signin',payload:token});
+        navigate('TrackList');
+
+    }
+
+}
+
+
+const clearErrorMessage=dispatch=>()=>{
+    dispatch({type:'clear_error_message'});
+
+}
 
 
 
@@ -42,12 +65,23 @@ const signup=(dispatch)=>{
 
 };
 
-const signin=(dispatch)=>{
+const signin=dispatch=>async({email,password})=>{
+   
   
-    return({email,password})=>{
-        
+        try{
+        const response=await trackerApi.post('/signin',{email,password});
+            
+        await AsyncStorage.setItem('token',response.data.token);
+        dispatch({type:'singin',payload:response.data.token});
+        navigate('TrackList')
 
-    };
+
+        }
+        catch(err){
+            dispatch({type:'add_error',payload:'Some thing wrong with  sign in'})
+        }
+
+  
 
 };
 
@@ -67,6 +101,6 @@ const signout=(dispatch)=>{
 //intial state or intial value
 export const {Provider,Context}=createDataContext(
     authReducer,
-    {signin,signout,signup},
+    {signin,signout,signup,clearErrorMessage,tryLocalSignin},
     {token:null,errorMessage:''}
     );
