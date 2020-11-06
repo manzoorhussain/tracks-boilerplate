@@ -12,10 +12,7 @@ const SignupScreen=({navigation})=>{
 
     const{state,signup,clearErrorMessage,tryLocalSignin}=useContext(AuthContext);
    
-    useEffect(()=>{
-        tryLocalSignin();  
-    },[]);
- 
+   
 
     return(
         <View style={styles.container}>

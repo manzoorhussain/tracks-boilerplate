@@ -1,22 +1,37 @@
-/**
- * Created by manzoor.hussain on 10/28/2020.
- */
-/**
- * Created by manzoor.hussain on 10/28/2020.
- */
-/**
- * Created by manzoor.hussain on 10/28/2020.
- */
-/**
- * Created by manzoor.hussain on 10/28/2020.
- */
-import React from 'react';
-import {View,StyleSheet,Text} from 'react-native';
-
+import '../_markLocation';
+import React,{useEffect,useState} from 'react';
+import {View,StyleSheet} from 'react-native';
+import {Text} from 'react-native-elements';
+import {requestPermissionAsync} from 'expo-location';
+import {SafeAreaView} from 'react-navigation';
+import Map from '../components/Map';
 
 const TrackCreateScreen=()=>{
+    const[err,setErr]=useState(null);
+    
+    const startWatching=async()=>{
+        
+        
+        
+        try{
+            await requestPermissionAsync();
+        }catch(e){
+            setErr(e);
+        }
+
+    };
+
+    useEffect(()=>{
+        startWatching();
+    },[])
+
     return(
-        <Text>TrackCreateScreen</Text>
+
+        <SafeAreaView forceInset={{top:'always'}}>
+        <Text h3>Create a Track</Text>
+        <Map/>
+        {err?<Text>Please enable location services</Text>:null}
+        </SafeAreaView>
     );
 }
 
